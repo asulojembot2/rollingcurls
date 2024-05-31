@@ -1,4 +1,3 @@
-<?php
 namespace RollingCurl;
 use RollingCurl\Request;
 class RollingCurl
@@ -529,5 +528,3 @@ class RollingCurl
     }
 
 }
-
-?>
