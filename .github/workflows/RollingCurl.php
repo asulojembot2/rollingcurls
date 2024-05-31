@@ -5,7 +5,7 @@ class RollingCurl
     private $simultaneousLimit = 5;
     private $callback;
     private $idleCallback;
-    private $userAgents = [
+    private $userAge = [
         'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
@@ -21,8 +21,8 @@ class RollingCurl
         CURLOPT_USERAGENT => '',
     );
     public function __construct() {
-        $randomIndex = array_rand($this->userAgents); // Get a random index
-        $this->options[CURLOPT_USERAGENT] = $this->userAgents[$randomIndex]; // Set the user agent
+        $randomIn = array_rand($this->userAge); // Get a random index
+        $this->options[CURLOPT_USERAGENT] = $this->userAge[$randomIn]; // Set the user agent
     }
    protected $multicurlOptions = array();
    private $headers = array();
