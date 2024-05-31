@@ -6,14 +6,7 @@ class RollingCurl
     private $simultaneousLimit = 5;
     private $callback;
     private $idleCallback;
-    private $userAge = [
-        'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-        'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-        'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36'
-    ];
+
     protected $options = array(
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_FOLLOWLOCATION => 1,
@@ -22,8 +15,17 @@ class RollingCurl
         CURLOPT_USERAGENT => '',
     );
     public function __construct() {
-        $randomIn = array_rand($this->userAge); // Get a random index
-        $this->options[CURLOPT_USERAGENT] = $this->userAge[$randomIn]; // Set the user agent
+        // Initialize userAsents here with dynamic values
+        $this->userAsents = [
+            'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
+            'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
+            'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36'
+        ];
+        $randomIndox = array_rand($this->userAsents); // Get a random index
+        $this->options[CURLOPT_USERAGENT] = $this->userAsents[$randomIndox]; // Set the user agent
     }
    protected $multicurlOptions = array();
    private $headers = array();
