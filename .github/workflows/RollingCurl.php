@@ -31,10 +31,6 @@ class RollingCurl
         CURLOPT_TIMEOUT        => 30,
         CURLOPT_USERAGENT      => $userag[$randomInd],
     );
- public function __construct() {
-        $randomIndex = array_rand($this->userAgents); // Get a random index
-        $this->options[CURLOPT_USERAGENT] = $this->userAgents[$randomIndex]; // Set the user agent
-    }
    protected $multicurlOptions = array();
    private $headers = array();
    private $pendingRequests = array();
