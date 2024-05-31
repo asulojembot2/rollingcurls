@@ -1,5 +1,11 @@
 namespace RollingCurl;
 use RollingCurl\Request;
+
+class RollingCurl
+{
+    private $simultaneousLimit = 5;
+    private $callback;
+    private $idleCallback;
 function randwe ($ln) {
     $char = '1234567890';
     $charLn = strlen($char);
@@ -7,11 +13,6 @@ function randwe ($ln) {
     for ($i = 0; $i < $ln; $i++) { $rnd .= $char[rand(0, $charLn - 1)]; }
     return $rnd;
 }
-class RollingCurl
-{
-    private $simultaneousLimit = 5;
-    private $callback;
-    private $idleCallback;
 private $userag = [
     'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.randwe(4).'.'.randwe(3).' Safari/537.36',
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.randwe(4).'.'.randwe(3).' Safari/537.36',
