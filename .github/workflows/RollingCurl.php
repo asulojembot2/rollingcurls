@@ -1,5 +1,18 @@
 namespace RollingCurl;
 use RollingCurl\Request;
+$userAgents = [
+    // List of user agents
+    'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.randstr2(4).'.'.randstr2(3).' Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.randstr2(4).'.'.randstr2(3).' Safari/537.36',
+	'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.'.randstr2(4).'.'.randstr2(3).' Safari/537.36',
+	'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.'.randstr2(4).'.'.randstr2(3).' Safari/537.36',
+	'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.'.randstr2(4).'.'.randstr2(3).' Safari/537.36',
+	'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.'.randstr2(4).'.'.randstr2(3).' Safari/537.36',
+   // Add more user agents as needed
+];
+
+// Get a random index
+$randomIndex = array_rand($userAgents);
 class RollingCurl
 {
     private $simultaneousLimit = 5;
@@ -11,7 +24,7 @@ class RollingCurl
         CURLOPT_FOLLOWLOCATION => 1,
         CURLOPT_CONNECTTIMEOUT => 30,
         CURLOPT_TIMEOUT        => 30,
-        CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36',
+        CURLOPT_USERAGENT => $userAgents[$randomIndex],
     );
    protected $multicurlOptions = array();
    private $headers = array();
