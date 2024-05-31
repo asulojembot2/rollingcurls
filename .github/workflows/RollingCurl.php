@@ -11,7 +11,7 @@ class RollingCurl
         CURLOPT_FOLLOWLOCATION => 1,
         CURLOPT_CONNECTTIMEOUT => 30,
         CURLOPT_TIMEOUT        => 30,
-        CURLOPT_USERAGENT => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.69 Safari/537.36',
+        CURLOPT_USERAGENT      => '',
     );
    protected $multicurlOptions = array();
    private $headers = array();
@@ -20,7 +20,14 @@ class RollingCurl
    private $activeRequests = array();
    private $completedRequests = array();
    private $completedRequestCount = 0;
+    public function __construct() {
+        // Set the user agent dynamically in the constructor
+        $this->options[CURLOPT_USERAGENT] = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.' . $this->generateRandomVersion() . ' Safari/537.36';
+    }
 
+    private function generateRandomVersion() {
+        return rand(1000, 9999) . '.' . rand(100, 999);
+    }
     public function add(Request $request)
     {
         $this->pendingRequests[] = $request;
