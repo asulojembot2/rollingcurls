@@ -1,37 +1,18 @@
 namespace RollingCurl;
 use RollingCurl\Request;
-
 class RollingCurl
 {
     private $simultaneousLimit = 5;
     private $callback;
     private $idleCallback;
-function randwe ($ln) {
-    $char = '1234567890';
-    $charLn = strlen($char);
-    $rnd = '';
-    for ($i = 0; $i < $ln; $i++) { $rnd .= $char[rand(0, $charLn - 1)]; }
-    return $rnd;
-}
-private $userag = [
-    'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.randwe(4).'.'.randwe(3).' Safari/537.36',
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.randwe(4).'.'.randwe(3).' Safari/537.36',
-	'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.'.randwe(4).'.'.randwe(3).' Safari/537.36',
-	'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.'.randwe(4).'.'.randwe(3).' Safari/537.36',
-	'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.'.randwe(4).'.'.randwe(3).' Safari/537.36',
-	'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.'.randwe(4).'.'.randwe(3).' Safari/537.36',
-    ];
+
     protected $options = array(
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_FOLLOWLOCATION => 1,
         CURLOPT_CONNECTTIMEOUT => 30,
         CURLOPT_TIMEOUT        => 30,
-        CURLOPT_USERAGENT      => '',
+        CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:8.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.162 Safari/537.36',
     );
-    public function __construct() {
-        $randomind = array_rand($this->userag); // Get a random index
-        $this->options[CURLOPT_USERAGENT] = $this->userag[$randomind]; // Set the user agent
-    }    
    protected $multicurlOptions = array();
    private $headers = array();
    private $pendingRequests = array();
