@@ -2,6 +2,9 @@ namespace RollingCurl;
 use RollingCurl\Request;
 class RollingCurl
 {
+    private function generateRandomVersion() {
+        return rand(1000, 9999) . '.' . rand(100, 999);
+    }
     private $simultaneousLimit = 5;
     private $callback;
     private $idleCallback;
@@ -11,7 +14,7 @@ class RollingCurl
         CURLOPT_FOLLOWLOCATION => 1,
         CURLOPT_CONNECTTIMEOUT => 30,
         CURLOPT_TIMEOUT        => 30,
-        CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36',
+        CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.' . $this->generateRandomVersion() . ' Safari/537.36',
     );
    protected $multicurlOptions = array();
    private $headers = array();
