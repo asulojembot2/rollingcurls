@@ -11,21 +11,8 @@ class RollingCurl
         CURLOPT_FOLLOWLOCATION => 1,
         CURLOPT_CONNECTTIMEOUT => 30,
         CURLOPT_TIMEOUT        => 30,
-        CURLOPT_USERAGENT => '',
+        CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36',
     );
-    public function __construct() {
-        // Initialize userAsents here with dynamic values
-        $this->userAsents = [
-            'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-            'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36',
-            'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.'.rand(1000,9999).'.'.rand(100,999).' Safari/537.36'
-        ];
-        $randomIndox = array_rand($this->userAsents); // Get a random index
-        $this->options[CURLOPT_USERAGENT] = $this->userAsents[$randomIndox]; // Set the user agent
-    }
    protected $multicurlOptions = array();
    private $headers = array();
    private $pendingRequests = array();
@@ -414,7 +401,7 @@ class RollingCurl
      */
     public function setSimultaneousLimit($count)
     {
-        if (!is_int($count) || $count < 1) {
+        if (!is_int($count) || $count < 2) {
             throw new \InvalidArgumentException("setSimultaneousLimit count must be an int >= 2");
         }
         $this->simultaneousLimit = $count;
